@@ -45,21 +45,37 @@ public class Player extends Entity {
 	}
 	
 	public void Update() {
-		if(keyH.upPressed == true){
-			direction = "up";
-			y -= speed;
-		}
-		if(keyH.downPressed == true){
-			direction = "down";
-			y += speed;
-		}
-		if(keyH.leftPressed == true){
-			direction = "left";
-			x -= speed;
-		}
-		if(keyH.rightPressed == true){
-			direction = "right";
-			x += speed;
+		if(keyH.upPressed == true ||
+		   keyH.downPressed == true ||
+		   keyH.leftPressed == true ||
+		   keyH.rightPressed == true) {
+			if(keyH.upPressed == true){
+				direction = "up";
+				y -= speed;
+			}
+			if(keyH.downPressed == true){
+				direction = "down";
+				y += speed;
+			}
+			if(keyH.leftPressed == true){
+				direction = "left";
+				x -= speed;
+			}
+			if(keyH.rightPressed == true){
+				direction = "right";
+				x += speed;
+			}
+			
+			spriteCounter++;
+			
+			if(spriteCounter > 12){
+				if(spriteNum == 1) {
+					spriteNum = 2;
+				} else if (spriteNum == 2) {
+					spriteNum = 1;
+				}
+				spriteCounter = 0;
+			}
 		}
 	}
 	
@@ -67,16 +83,44 @@ public class Player extends Entity {
 		BufferedImage image = null;
 		switch (direction) {
 		case "up":
-			image = up1;
+			switch(spriteNum) {
+			case 1:
+				image = up1;
+				break;
+			case 2:
+				image = up2;
+				break;
+			}
 			break;
 		case "down":
-			image = down1;
+			switch(spriteNum) {
+			case 1:
+				image = down1;
+				break;
+			case 2:
+				image = down2;
+				break;
+			}
 			break;
 		case "left":
-			image = left1;
+			switch(spriteNum) {
+			case 1:
+				image = left1;
+				break;
+			case 2:
+				image = left2;
+				break;
+			}
 			break;
 		case "right":
-			image = right1;
+			switch(spriteNum) {
+			case 1:
+				image = right1;
+				break;
+			case 2:
+				image = right2;
+				break;
+			}
 			break;
 		}
 		g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
