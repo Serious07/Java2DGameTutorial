@@ -84,13 +84,12 @@ public class GamePanel extends JPanel implements Runnable{
 				
 				nextDrawTime += drawInterval;
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 			drawCount++;
 			if(timer >= 1000000000){
-				System.out.println("FPS: " + drawCount);
+				//System.out.println("FPS: " + drawCount);
 				drawCount = 0;
 				timer = 0;
 			}
